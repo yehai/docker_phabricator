@@ -9,7 +9,7 @@
 
 # Set phd and ssh user
 /opt/phabricator/phabricator/bin/config set phd.user phd
-/opt/phabricator/phabricator/bin/config set diffusion.ssh-user  vcs
+/opt/phabricator/phabricator/bin/config set diffusion.ssh-user  git
 
 # Set local storage path
 /opt/phabricator/phabricator/bin/config set storage.local-disk.path /var/storage

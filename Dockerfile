@@ -30,7 +30,7 @@ RUN apt-get -y autoclean
 RUN apt-get -y autoremove
 
 RUN useradd -r -d / phd
-RUN useradd -r -d / vcs
+RUN useradd -r -d / git
 
 RUN mkdir -p /var/repo
 RUN mkdir -p /var/config
@@ -98,20 +98,20 @@ RUN mkdir /var/run/sshd
 
 ADD etc/sudoers.d/30-phabricator /etc/sudoers.d/
 
-RUN sed -i "s/vcs\:\(\!\|\!\!\)/vcs\:NP/g" /etc/shadow
+RUN sed -i "s/git\:\(\!\|\!\!\)/git\:NP/g" /etc/shadow
 
 RUN mkdir /usr/libexec
 RUN cp /opt/phabricator/phabricator/resources/sshd/phabricator-ssh-hook.sh /usr/libexec/
 RUN chown root  /usr/libexec/phabricator-ssh-hook.sh
 RUN chmod 755   /usr/libexec/phabricator-ssh-hook.sh
 
-RUN sed -i "s/^VCSUSER.*/VCSUSER=\"vcs\"/g" /usr/libexec/phabricator-ssh-hook.sh
+RUN sed -i "s/^VCSUSER.*/VCSUSER=\"git\"/g" /usr/libexec/phabricator-ssh-hook.sh
 RUN sed -i "s|^ROOT.*|ROOT=\"/opt/phabricator/phabricator\"|g" /usr/libexec/phabricator-ssh-hook.sh
 
 RUN cp /opt/phabricator/phabricator/resources/sshd/sshd_config.phabricator.example /etc/ssh/sshd_config.phabricator
 
-RUN sed -i "s|^AuthorizedKeysCommandUser\s.*|AuthorizedKeysCommandUser vcs|g" /etc/ssh/sshd_config.phabricator
-RUN sed -i "s|^AllowUsers\s.*|AllowUsers vcs|g" /etc/ssh/sshd_config.phabricator
+RUN sed -i "s|^AuthorizedKeysCommandUser\s.*|AuthorizedKeysCommandUser git|g" /etc/ssh/sshd_config.phabricator
+RUN sed -i "s|^AllowUsers\s.*|AllowUsers git|g" /etc/ssh/sshd_config.phabricator
 
 EXPOSE 22
 EXPOSE 80

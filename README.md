@@ -60,4 +60,4 @@ Lighttpd is configured to only respond to the supplied hostname e.g. [phabricato
 
 ### SSH
 
-SSH user is `vcs`
+SSH user is `git`
