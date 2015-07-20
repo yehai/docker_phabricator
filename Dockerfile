@@ -14,6 +14,7 @@ RUN apt-get -y install \
     php5-mysql \
     php5-curl \
     php5-json \
+    php5-ldap \
     php5-gd \
     php-apc \
     npm \
