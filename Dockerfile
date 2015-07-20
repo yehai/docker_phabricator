@@ -23,7 +23,8 @@ RUN apt-get -y install \
     git \
     mercurial \
     subversion \
-    python-pygments \ 
+    python-pygments \
+    telnet \
     sendmail
 
 RUN apt-get -y clean
